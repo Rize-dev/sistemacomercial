@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Comercial IA | Multset — Seu time de vendas com inteligência artificial 24/7</title>
+<meta name="description" content="CRM inteligente com SDR IA, prospecção automatizada, lead scoring e follow-up automático. A oferta principal da Multset para escalar seu comercial.">
+<style>
+  :root{
+    --bg:#07070c;
+    --bg-2:#0d0d18;
+    --surface:rgba(255,255,255,0.03);
+    --border:rgba(255,255,255,0.08);
+    --text:#ededf2;
+    --muted:#9a9aae;
+    --primary:#7c5cff;
+    --primary-2:#22d3ee;
+    --accent:#ff7ac6;
+    --gold:#fbbf24;
+    --success:#34d399;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  body::before{
+    content:"";
+    position:fixed;
+    top:-300px;left:50%;
+    transform:translateX(-50%);
+    width:1100px;height:1100px;
+    background:radial-gradient(circle,rgba(124,92,255,0.18) 0%,rgba(34,211,238,0.08) 40%,transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    backdrop-filter:blur(12px);
+    background:rgba(7,7,12,0.75);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;max-width:1200px;margin:0 auto;
+  }
+  .logo{
+    font-weight:800;font-size:20px;letter-spacing:-0.5px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo-mark{
+    width:32px;height:32px;border-radius:8px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    display:grid;place-items:center;
+    font-size:14px;font-weight:900;color:#0a0a0f;
+  }
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14px;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:600;font-size:14px;
+    transition:all .25s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#0a0a0f;
+    box-shadow:0 10px 30px -10px rgba(124,92,255,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 15px 40px -10px rgba(124,92,255,0.7)}
+  .btn-ghost{
+    background:transparent;color:var(--text);
+    border:1px solid var(--border);
+  }
+  .btn-ghost:hover{background:var(--surface);border-color:rgba(255,255,255,0.2)}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:90px 0 70px;
+    text-align:center;
+  }
+  .offer-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 16px;
+    background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(255,122,198,0.1));
+    border:1px solid rgba(251,191,36,0.3);
+    border-radius:999px;
+    font-size:13px;color:var(--gold);
+    margin-bottom:24px;
+    font-weight:600;
+  }
+  h1{
+    font-size:clamp(36px,6vw,68px);
+    line-height:1.05;
+    letter-spacing:-1.5px;
+    font-weight:800;
+    margin-bottom:24px;
+  }
+  h1 .grad{
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-2) 50%,var(--accent) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .hero p.lead{
+    font-size:clamp(16px,1.6vw,20px);
+    color:var(--muted);
+    max-width:760px;margin:0 auto 40px;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:24px;max-width:900px;margin:72px auto 0;
+    padding-top:40px;
+    border-top:1px solid var(--border);
+  }
+  .stat strong{
+    display:block;font-size:30px;font-weight:800;
+    background:linear-gradient(135deg,var(--primary-2),var(--primary));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .stat span{color:var(--muted);font-size:13px}
+
+  /* SECTION */
+  section{padding:100px 0;position:relative;z-index:1}
+  .section-head{text-align:center;max-width:720px;margin:0 auto 60px}
+  .section-head .eyebrow{
+    color:var(--primary-2);
+    font-size:13px;font-weight:600;
+    text-transform:uppercase;letter-spacing:2px;
+    margin-bottom:16px;
+  }
+  h2{
+    font-size:clamp(28px,4vw,44px);
+    line-height:1.15;
+    letter-spacing:-1px;
+    font-weight:800;
+    margin-bottom:18px;
+  }
+  .section-head p{color:var(--muted);font-size:17px}
+
+  /* PROBLEMS */
+  .problems{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+  }
+  .problem-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    transition:all .3s;
+  }
+  .problem-card:hover{
+    border-color:rgba(124,92,255,0.3);
+    transform:translateY(-4px);
+  }
+  .problem-icon{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(135deg,rgba(124,92,255,0.2),rgba(34,211,238,0.1));
+    display:grid;place-items:center;
+    margin-bottom:18px;font-size:22px;
+  }
+  .problem-card h3{font-size:18px;margin-bottom:10px;font-weight:700}
+  .problem-card p{color:var(--muted);font-size:14px}
+
+  /* WHAT IS IT */
+  .what-is{
+    background:var(--bg-2);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:60px 48px;
+    position:relative;
+    overflow:hidden;
+  }
+  .what-is::before{
+    content:"";
+    position:absolute;
+    top:-100px;right:-100px;
+    width:400px;height:400px;
+    background:radial-gradient(circle,rgba(124,92,255,0.15),transparent 60%);
+    pointer-events:none;
+  }
+  .what-is-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:60px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .what-is h2{font-size:clamp(26px,3.5vw,38px)}
+  .what-is p{color:var(--muted);font-size:16px;margin-bottom:24px}
+  .pillars{
+    display:grid;grid-template-columns:1fr;gap:16px;
+  }
+  .pillar{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:20px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+  }
+  .pillar-icon{
+    width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    display:grid;place-items:center;
+    flex-shrink:0;
+    font-size:20px;
+  }
+  .pillar h4{font-size:16px;margin-bottom:4px;font-weight:700}
+  .pillar p{color:var(--muted);font-size:13px;margin:0}
+
+  /* PLANS */
+  .plans{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:24px;align-items:stretch;
+  }
+  .plan{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:36px 32px;
+    display:flex;flex-direction:column;
+    transition:all .3s;
+  }
+  .plan:hover{transform:translateY(-4px)}
+  .plan.featured{
+    border:1px solid transparent;
+    background:
+      linear-gradient(var(--bg-2),var(--bg-2)) padding-box,
+      linear-gradient(135deg,var(--primary),var(--primary-2)) border-box;
+    box-shadow:0 20px 60px -20px rgba(124,92,255,0.4);
+  }
+  .plan-tag{
+    position:absolute;top:-12px;left:32px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#0a0a0f;
+    padding:5px 14px;border-radius:999px;
+    font-size:11px;font-weight:700;letter-spacing:0.5px;
+    text-transform:uppercase;
+  }
+  .plan-name{font-size:14px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+  .plan-price-block{margin:14px 0 6px}
+  .plan-price{
+    font-size:38px;font-weight:800;letter-spacing:-1px;
+  }
+  .plan-price small{font-size:14px;color:var(--muted);font-weight:500}
+  .plan-monthly{
+    display:flex;align-items:center;gap:8px;
+    margin-top:8px;
+    padding:8px 12px;
+    background:rgba(124,92,255,0.08);
+    border:1px solid rgba(124,92,255,0.2);
+    border-radius:10px;
+    font-size:13px;
+  }
+  .plan-monthly strong{color:var(--primary-2);font-size:16px}
+  .plan-profile{color:var(--muted);font-size:14px;margin:18px 0 24px;min-height:42px}
+  .plan-features{list-style:none;margin-bottom:32px;flex:1}
+  .plan-features li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:9px 0;
+    font-size:14px;color:#c9c9d6;
+  }
+  .plan-features li::before{
+    content:"";
+    flex-shrink:0;
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    margin-top:2px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:12px;background-position:center;background-repeat:no-repeat;
+  }
+  .plan .btn{width:100%;text-align:center}
+
+  /* COMPARISON */
+  .comparison-wrap{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .comparison{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .comparison th,.comparison td{
+    padding:16px 20px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+  }
+  .comparison thead th{
+    background:var(--bg-2);
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--muted);
+  }
+  .comparison thead th:not(:first-child){text-align:center}
+  .comparison td:not(:first-child){text-align:center}
+  .comparison tbody tr:hover{background:rgba(124,92,255,0.03)}
+  .comparison .check{color:var(--success);font-weight:700;font-size:18px}
+  .comparison .dash{color:var(--muted)}
+  .comparison .cat{
+    background:rgba(124,92,255,0.05);
+    font-weight:700;
+    color:var(--primary-2);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  /* ROI */
+  .roi-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+  }
+  .roi-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    text-align:center;
+  }
+  .roi-card .big{
+    font-size:42px;font-weight:800;
+    background:linear-gradient(135deg,var(--primary-2),var(--primary));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:8px;
+  }
+  .roi-card h4{font-size:15px;margin-bottom:8px}
+  .roi-card p{color:var(--muted);font-size:13px}
+
+  /* FAQ */
+  .faq{max-width:820px;margin:0 auto}
+  .faq-item{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    margin-bottom:12px;
+    overflow:hidden;
+    transition:all .2s;
+  }
+  .faq-item[open]{border-color:rgba(124,92,255,0.3)}
+  .faq-item summary{
+    padding:20px 24px;
+    cursor:pointer;
+    font-weight:600;font-size:16px;
+    display:flex;justify-content:space-between;align-items:center;
+    list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{
+    content:"+";font-size:24px;color:var(--primary-2);
+    transition:transform .2s;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item .answer{
+    padding:0 24px 20px;
+    color:var(--muted);font-size:15px;
+  }
+
+  /* CTA FINAL */
+  .cta-final{
+    text-align:center;
+    background:
+      radial-gradient(circle at 30% 50%,rgba(124,92,255,0.15),transparent 50%),
+      radial-gradient(circle at 70% 50%,rgba(34,211,238,0.1),transparent 50%),
+      var(--surface);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:70px 40px;
+    margin:0 24px;
+  }
+  .cta-final h2{margin-bottom:16px}
+  .cta-final p{color:var(--muted);max-width:560px;margin:0 auto 32px;font-size:17px}
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:40px 0;
+    margin-top:80px;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  @media (max-width:900px){
+    .what-is-grid{grid-template-columns:1fr;gap:40px}
+    .what-is{padding:40px 28px}
+    .hero-stats{grid-template-columns:repeat(2,1fr)}
+    .comparison th,.comparison td{padding:12px;font-size:13px}
+  }
+  @media (max-width:768px){
+    .nav-links a:not(.btn){display:none}
+    .hero{padding:60px 0 40px}
+    section{padding:70px 0}
+    .cta-final{padding:50px 24px;margin:0 16px}
+    .comparison-wrap{overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">M</div>
+      <span>Multset</span>
+    </div>
+    <div class="nav-links">
+      <a href="#sistema">O sistema</a>
+      <a href="#planos">Planos</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato" class="btn btn-primary">Agendar demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="offer-tag">
+      ⭐ OFERTA PRINCIPAL MULTSET
+    </div>
+    <h1>
+      Seu time comercial operando com <span class="grad">inteligência artificial 24/7</span>.
+    </h1>
+    <p class="lead">
+      CRM inteligente, SDR automatizado, prospecção em escala e follow-up que não esquece ninguém. O Sistema Comercial IA da Multset transforma sua operação de vendas em uma máquina previsível.
+    </p>
+    <div class="hero-cta">
+      <a href="#planos" class="btn btn-primary">Ver planos e preços</a>
+      <a href="#sistema" class="btn btn-ghost">Conhecer o sistema</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <strong>+3x</strong>
+        <span>Leads qualificados</span>
+      </div>
+      <div class="stat">
+        <strong>-70%</strong>
+        <span>Tempo em follow-up</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Prospecção ativa</span>
+      </div>
+      <div class="stat">
+        <strong>0</strong>
+        <span>Oportunidades perdidas</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEMS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">O problema</div>
+      <h2>Seu comercial perde dinheiro todos os dias — e você nem percebe</h2>
+      <p>Enquanto leads esfriam, follow-ups são esquecidos e oportunidades param no meio do funil, o crescimento fica travado.</p>
+    </div>
+
+    <div class="problems">
+      <div class="problem-card">
+        <div class="problem-icon">🎯</div>
+        <h3>Leads perdidos</h3>
+        <p>Entram leads todos os dias, mas muitos esfriam antes do primeiro contato. O tempo de resposta é o maior gargalo.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔁</div>
+        <h3>Follow-up inconsistente</h3>
+        <p>Vendedores esquecem de retornar. O cliente some. A oportunidade morre sem motivo.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3>Pipeline opaco</h3>
+        <p>Ninguém sabe ao certo onde estão as oportunidades, qual o estágio real ou o que vai fechar no mês.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <h3>Time caro e ocioso</h3>
+        <p>SDRs e vendedores gastam tempo com tarefas operacionais em vez de vender de verdade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS IT -->
+<section id="sistema" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="what-is">
+      <div class="what-is-grid">
+        <div>
+          <div class="eyebrow" style="color:var(--primary-2);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">O que é</div>
+          <h2>Um sistema comercial completo, turbinado por IA</h2>
+          <p>
+            O Sistema Comercial IA une CRM, automação e agentes de inteligência artificial em uma única plataforma. Ele prospecta, qualifica, organiza, cobra follow-up e entrega insights — enquanto seu time foca só em fechar.
+          </p>
+          <p>
+            Não é mais um CRM genérico. É um sistema desenhado para operar como um time comercial completo, com SDR IA, prospecção automatizada e inteligência de pipeline.
+          </p>
+          <a href="#planos" class="btn btn-primary">Ver planos</a>
+        </div>
+
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🧠</div>
+            <div>
+              <h4>CRM Inteligente</h4>
+              <p>Empresas, contatos, pipeline, etapas, histórico e tarefas — tudo conectado e vivo.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤖</div>
+            <div>
+              <h4>SDR com IA</h4>
+              <p>Qualifica, descobre necessidades e encaminha leads prontos para o vendedor.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🔍</div>
+            <div>
+              <h4>Prospecção em escala</h4>
+              <p>Agente IA busca empresas, analisa oportunidades e alimenta o funil automaticamente.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📈</div>
+            <div>
+              <h4>Inteligência comercial</h4>
+              <p>Dashboards, indicadores, análise de pipeline e recomendações de vendas em tempo real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="planos">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Planos</div>
+      <h2>Escolha o plano certo para o tamanho do seu comercial</h2>
+      <p>Investimento único de implantação + mensalidade do sistema. Sem surpresas, sem letras miúdas.</p>
+    </div>
+
+    <div class="plans">
+
+      <!-- STARTER -->
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price-block">
+          <div class="plan-price">R$ 997<small> implantação</small></div>
+          <div class="plan-monthly">
+            <span>Mensalidade:</span>
+            <strong>R$ 297/mês</strong>
+          </div>
+        </div>
+        <div class="plan-profile">Para pequenas equipes que querem organizar o comercial e começar a vender com IA.</div>
+        <ul class="plan-features">
+          <li>CRM completo</li>
+          <li>Cadastro de empresas e contatos</li>
+          <li>Pipeline com etapas de venda</li>
+          <li>Histórico e tarefas</li>
+          <li>Cadastro automático de leads</li>
+          <li>Alertas e lembretes</li>
+          <li>Follow-up básico automatizado</li>
+          <li>IA: resumo de leads</li>
+          <li>IA: sugestão de próxima ação</li>
+          <li>IA: classificação básica</li>
+        </ul>
+        <a href="#contato" class="btn btn-ghost">Começar com Starter</a>
+      </div>
+
+      <!-- PROFESSIONAL -->
+      <div class="plan featured">
+        <div class="plan-tag">Mais escolhido</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price-block">
+          <div class="plan-price">R$ 1.500<small> implantação</small></div>
+          <div class="plan-monthly">
+            <span>Mensalidade:</span>
+            <strong>R$ 497/mês</strong>
+          </div>
+        </div>
+        <div class="plan-profile">Para empresas que querem SDR IA, prospecção ativa e funil rodando no automático.</div>
+        <ul class="plan-features">
+          <li>Tudo do Starter</li>
+          <li>Agente de prospecção IA</li>
+          <li>Busca automática de empresas</li>
+          <li>Diagnóstico comercial</li>
+          <li>Classificação de oportunidades</li>
+          <li>Lead scoring inteligente</li>
+          <li>SDR IA: qualificação automática</li>
+          <li>Perguntas de descoberta guiadas</li>
+          <li>Encaminhamento automático ao vendedor</li>
+          <li>Sequências de follow-up</li>
+          <li>Recuperação de leads parados</li>
+          <li>Dashboard com indicadores</li>
+          <li>Performance do funil</li>
+        </ul>
+        <a href="#contato" class="btn btn-primary">Escolher Professional</a>
+      </div>
+
+      <!-- SCALE -->
+      <div class="plan">
+        <div class="plan-name">Scale</div>
+        <div class="plan-price-block">
+          <div class="plan-price">R$ 2.500<small> implantação</small></div>
+          <div class="plan-monthly">
+            <span>Mensalidade:</span>
+            <strong>R$ 997/mês</strong>
+          </div>
+        </div>
+        <div class="plan-profile">Para operações que querem escalar vendas com múltiplos agentes IA e inteligência avançada.</div>
+        <ul class="plan-features">
+          <li>Tudo do Professional</li>
+          <li>Múltiplos agentes IA especializados</li>
+          <li>SDR IA em escala</li>
+          <li>Prospecção em grande volume</li>
+          <li>Inteligência comercial avançada</li>
+          <li>Análise automática do pipeline</li>
+          <li>Recomendações de vendas por IA</li>
+          <li>Geração automática de propostas</li>
+          <li>Automação de tarefas internas</li>
+          <li>Relatórios gerenciais</li>
+          <li>Dashboards avançados</li>
+          <li>Integrações personalizadas</li>
+          <li>Múltiplos usuários</li>
+          <li>Personalização do sistema</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <a href="#contato" class="btn btn-ghost">Falar sobre Scale</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="comparativo" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Comparativo</div>
+      <h2>Veja o que cada plano entrega</h2>
+      <p>Uma visão clara das funcionalidades para você escolher com segurança.</p>
+    </div>
+
+    <div class="comparison-wrap">
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>Funcionalidade</th>
+            <th>Starter</th>
+            <th>Professional</th>
+            <th>Scale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cat"><td colspan="4">CRM</td></tr>
+          <tr><td>Cadastro de empresas e contatos</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Pipeline e etapas de venda</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Histórico e tarefas</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Múltiplos usuários</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+
+          <tr class="cat"><td colspan="4">Automação</td></tr>
+          <tr><td>Cadastro automático de leads</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Alertas e lembretes</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Follow-up básico</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Sequências automáticas</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Recuperação de leads parados</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+
+          <tr class="cat"><td colspan="4">IA</td></tr>
+          <tr><td>Resumo de leads</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Sugestão de próxima ação</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Classificação básica</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Lead scoring</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>SDR IA</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Agente de prospecção</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Múltiplos agentes IA</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Geração de propostas</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Recomendações de vendas</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+
+          <tr class="cat"><td colspan="4">Gestão</td></tr>
+          <tr><td>Dashboard e indicadores</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Performance do funil</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Relatórios gerenciais</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Dashboards avançados</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Integrações personalizadas</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Suporte prioritário</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Retorno</div>
+      <h2>O investimento se paga em semanas, não em meses</h2>
+      <p>Estimativas baseadas em operações similares que implantamos.</p>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card">
+        <div class="big">+120%</div>
+        <h4>Mais leads qualificados</h4>
+        <p>Prospecção IA + lead scoring entregam oportunidades reais para o vendedor.</p>
+      </div>
+      <div class="roi-card">
+        <div class="big">-65%</div>
+        <h4>Ciclo de venda menor</h4>
+        <p>Follow-up automático e SDR IA aceleram cada etapa do funil.</p>
+      </div>
+      <div class="roi-card">
+        <div class="big">3x</div>
+        <h4>Produtividade do time</h4>
+        <p>Vendedores vendem. A IA cuida do resto.</p>
+      </div>
+      <div class="roi-card">
+        <div class="big">90 dias</div>
+        <h4>Payback médio</h4>
+        <p>O investimento se paga com o aumento de conversão e redução de lead perdido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Perguntas frequentes</div>
+      <h2>Tudo o que você precisa saber</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Por que tem taxa de implantação e mensalidade?</summary>
+        <div class="answer">A taxa de implantação cobre o setup completo: configuração do CRM, criação do pipeline, integração com suas ferramentas, treinamento dos agentes IA e onboarding da equipe. A mensalidade mantém o sistema rodando, com atualizações, suporte e evolução contínua dos agentes.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Posso começar pelo Starter e migrar depois?</summary>
+        <div class="answer">Sim. Muitos clientes começam pelo Starter para organizar o básico e, conforme o time cresce, migram para o Professional ou Scale. A migração é simples e preserva todos os dados.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quanto tempo leva para implantar?</summary>
+        <div class="answer">Starter: 1 a 2 semanas. Professional: 3 a 4 semanas. Scale: de 4 a 8 semanas, dependendo das integrações e personalizações.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>O SDR IA substitui meu time de vendas?</summary>
+        <div class="answer">Não. O SDR IA potencializa seu time. Ele faz o trabalho pesado de prospecção, qualificação e follow-up — para que seus vendedores foquem no que realmente importa: fechar negócios e construir relacionamento.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Posso integrar com as ferramentas que já uso?</summary>
+        <div class="answer">Sim. Integramos com WhatsApp, e-mail, Google Workspace, ERPs, gateways de pagamento e praticamente qualquer ferramenta com API. No plano Scale, as integrações são personalizadas para o seu cenário.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>E se eu cancelar a mensalidade?</summary>
+        <div class="answer">Você pode cancelar quando quiser. A taxa de implantação é única e não reembolsável, mas você mantém acesso aos dados exportáveis. Sem multa, sem fidelidade.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Meus dados e de clientes ficam seguros?</summary>
+        <div class="answer">Sim. Trabalhamos com criptografia, controle de acesso, backups automáticos e contratos de confidencialidade. Seus dados são seus.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="contato">
+  <div class="cta-final">
+    <h2>Pronto para transformar seu comercial com IA?</h2>
+    <p>Agende uma demo gratuita e veja o Sistema Comercial IA rodando com o perfil da sua operação.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/43991900405" class="btn btn-primary">Agendar demo no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2025 Multset — Sistema Comercial IA. Todos os direitos reservados.
+  </div>
+</footer>
+
+</body>
+</html>
